@@ -788,6 +788,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
+name = "atty"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9b39be18770d11421cdb1b9947a45dd3f37e93092cbf377614828a319d5fee8"
+dependencies = [
+ "hermit-abi 0.1.19",
+ "libc",
+ "winapi",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1870,6 +1881,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "brownstone"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c5839ee4f953e811bfdcf223f509cb2c6a3e1447959b0bff459405575bc17f22"
+dependencies = [
+ "arrayvec",
+]
+
+[[package]]
 name = "bson"
 version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2047,6 +2067,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "cef2map-nom"
+version = "0.1.0"
+dependencies = [
+ "bytes 1.10.1",
+ "criterion 0.3.6",
+ "memchr",
+ "r-nom",
+ "syslog 0.1.0",
+]
+
+[[package]]
 name = "cesu8"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2157,7 +2188,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57663b653d948a338bfb3eeba9bb2fd5fcfaecb9e199e87e1eda4d9e8b240fd9"
 dependencies = [
  "ciborium-io",
- "half",
+ "half 2.4.1",
 ]
 
 [[package]]
@@ -2179,6 +2210,17 @@ dependencies = [
 
 [[package]]
 name = "clap"
+version = "2.34.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a0610544180c38b88101fecf2dd634b174a62eef6946f84dfc6a7127512b381c"
+dependencies = [
+ "bitflags 1.3.2",
+ "textwrap",
+ "unicode-width 0.1.13",
+]
+
+[[package]]
+name = "clap"
 version = "4.5.47"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7eac00902d9d136acd712710d71823fb8ac8004ca445a89e73a41d45aa712931"
@@ -2193,7 +2235,7 @@ version = "3.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9d92b1fab272fe943881b77cc6e920d6543e5b1bfadbd5ed81c7c5a755742394"
 dependencies = [
- "clap",
+ "clap 4.5.47",
  "log",
 ]
 
@@ -2216,7 +2258,7 @@ version = "4.5.57"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4d9501bd3f5f09f7bbee01da9a511073ed30a80cd7a509f1214bb74eadea71ad"
 dependencies = [
- "clap",
+ "clap 4.5.47",
 ]
 
 [[package]]
@@ -2652,6 +2694,32 @@ dependencies = [
 
 [[package]]
 name = "criterion"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b01d6de93b2b6c65e17c634a26653a29d107b3c98c607c765bf38d041531cd8f"
+dependencies = [
+ "atty",
+ "cast",
+ "clap 2.34.0",
+ "criterion-plot 0.4.5",
+ "csv",
+ "itertools 0.10.5",
+ "lazy_static",
+ "num-traits",
+ "oorandom",
+ "plotters",
+ "rayon",
+ "regex",
+ "serde",
+ "serde_cbor",
+ "serde_derive",
+ "serde_json",
+ "tinytemplate",
+ "walkdir",
+]
+
+[[package]]
+name = "criterion"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e1c047a62b0cc3e145fa84415a3191f628e980b194c2755aa12300a4e6cbd928"
@@ -2659,8 +2727,8 @@ dependencies = [
  "anes",
  "cast",
  "ciborium",
- "clap",
- "criterion-plot",
+ "clap 4.5.47",
+ "criterion-plot 0.6.0",
  "itertools 0.13.0",
  "num-traits",
  "oorandom",
@@ -2672,6 +2740,16 @@ dependencies = [
  "tinytemplate",
  "tokio",
  "walkdir",
+]
+
+[[package]]
+name = "criterion-plot"
+version = "0.4.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2673cc8207403546f45f5fd319a974b1e6983ad1a3ee7e6041650013be041876"
+dependencies = [
+ "cast",
+ "itertools 0.10.5",
 ]
 
 [[package]]
@@ -3211,6 +3289,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "dit-extractor"
+version = "0.1.0"
+dependencies = [
+ "r-nom",
+]
+
+[[package]]
 name = "dns-lookup"
 version = "2.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3226,7 +3311,7 @@ dependencies = [
 name = "dnsmsg-parser"
 version = "0.1.0"
 dependencies = [
- "criterion",
+ "criterion 0.7.0",
  "data-encoding",
  "hickory-proto",
  "snafu 0.8.9",
@@ -3775,7 +3860,7 @@ version = "0.1.0"
 dependencies = [
  "bytes 1.10.1",
  "chrono",
- "criterion",
+ "criterion 0.7.0",
  "file-source-common",
  "flate2",
  "futures 0.3.31",
@@ -3799,7 +3884,7 @@ dependencies = [
  "bytes 1.10.1",
  "chrono",
  "crc",
- "criterion",
+ "criterion 0.7.0",
  "dashmap",
  "flate2",
  "glob",
@@ -4392,6 +4477,12 @@ dependencies = [
 
 [[package]]
 name = "half"
+version = "1.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b43ede17f21864e81be2fa654110bf1e793774238d86ef8555c37e6519c0403"
+
+[[package]]
+name = "half"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6dd08c532ae367adf81c312a4580bc67f1d0fe8bc9c460520283f4c0ff277888"
@@ -4632,6 +4723,15 @@ dependencies = [
  "futures-timer",
  "once_cell",
  "smol",
+]
+
+[[package]]
+name = "hermit-abi"
+version = "0.1.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
+dependencies = [
+ "libc",
 ]
 
 [[package]]
@@ -5257,6 +5357,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "indent_write"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0cfe9645a18782869361d9c8732246be7b410ad4e919d3609ebabdac00ba12c3"
+
+[[package]]
 name = "indexmap"
 version = "1.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5536,6 +5642,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "joinery"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72167d68f5fce3b8655487b8038691a3c9984ee769590f93f2a631f4ad64e4f5"
+
+[[package]]
 name = "js-sys"
 version = "0.3.77"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5555,6 +5667,15 @@ dependencies = [
  "serde",
  "serde_json",
  "thiserror 1.0.68",
+]
+
+[[package]]
+name = "json-payload-extractor"
+version = "0.1.0"
+dependencies = [
+ "r-nom",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -5854,6 +5975,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 dependencies = [
  "spin 0.5.2",
+]
+
+[[package]]
+name = "leef2map"
+version = "0.1.0"
+dependencies = [
+ "bytes 1.10.1",
+ "memchr",
+ "r-nom",
+ "syslog 0.1.0",
 ]
 
 [[package]]
@@ -6721,6 +6852,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2de2bc5b451bfedaef92c90b8939a8fff5770bdcc1fafd6239d086aab8fa6b29"
 dependencies = [
  "nom 8.0.0",
+]
+
+[[package]]
+name = "nom-supreme"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bd3ae6c901f1959588759ff51c95d24b491ecb9ff91aa9c2ef4acc5b1dcab27"
+dependencies = [
+ "brownstone",
+ "indent_write",
+ "joinery",
+ "memchr",
+ "nom 7.1.3",
 ]
 
 [[package]]
@@ -8377,6 +8521,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "79ec282e887b434b68c18fe5c121d38e72a5cf35119b59e54ec5b992ea9c8eb0"
 
 [[package]]
+name = "r-nom"
+version = "0.1.0"
+dependencies = [
+ "bytes 1.10.1",
+ "criterion 0.3.6",
+ "indent_write",
+ "memchr",
+ "nom 7.1.3",
+ "nom-supreme",
+]
+
+[[package]]
 name = "radium"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9384,6 +9540,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rvision-vrl-lib"
+version = "0.1.0"
+dependencies = [
+ "bytes 1.10.1",
+ "cef2map-nom",
+ "vrl",
+]
+
+[[package]]
 name = "ryu"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9608,6 +9773,16 @@ version = "0.11.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8437fd221bde2d4ca316d61b90e337e9e702b3820b87d63caa9ba6c02bd06d96"
 dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "serde_cbor"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bef2ebfde456fb76bbcf9f59315333decc4fda0b2b44b420243c11e0f5ec1f5"
+dependencies = [
+ "half 1.8.3",
  "serde",
 ]
 
@@ -10536,6 +10711,13 @@ dependencies = [
 
 [[package]]
 name = "syslog"
+version = "0.1.0"
+dependencies = [
+ "r-nom",
+]
+
+[[package]]
+name = "syslog"
 version = "6.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dfc7e95b5b795122fafe6519e27629b5ab4232c73ebb2428f568e82b1a457ad3"
@@ -10692,6 +10874,15 @@ dependencies = [
  "proc-macro2 0.4.30",
  "quote 0.6.13",
  "syn 0.15.44",
+]
+
+[[package]]
+name = "textwrap"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d326610f408c7a4eb6f51c37c330e496b08506c9457c9d34287ecc38809fb060"
+dependencies = [
+ "unicode-width 0.1.13",
 ]
 
 [[package]]
@@ -11432,7 +11623,7 @@ dependencies = [
 name = "tracing-limit"
 version = "0.1.0"
 dependencies = [
- "criterion",
+ "criterion 0.7.0",
  "dashmap",
  "mock_instant",
  "tracing 0.1.41",
@@ -11927,7 +12118,7 @@ dependencies = [
  "anyhow",
  "cfg-if",
  "chrono",
- "clap",
+ "clap 4.5.47",
  "clap-verbosity-flag",
  "clap_complete",
  "confy",
@@ -12004,10 +12195,10 @@ dependencies = [
  "cfg-if",
  "chrono",
  "chrono-tz",
- "clap",
+ "clap 4.5.47",
  "colored",
  "console-subscriber",
- "criterion",
+ "criterion 0.7.0",
  "crossterm 0.29.0",
  "csv",
  "databend-client",
@@ -12123,7 +12314,7 @@ dependencies = [
  "stream-cancel",
  "strip-ansi-escapes",
  "sysinfo",
- "syslog",
+ "syslog 6.1.1",
  "tempfile",
  "test-generator",
  "thread_local",
@@ -12169,7 +12360,7 @@ version = "0.1.2"
 dependencies = [
  "anyhow",
  "chrono",
- "clap",
+ "clap 4.5.47",
  "futures 0.3.31",
  "graphql_client",
  "reqwest 0.11.26",
@@ -12191,9 +12382,9 @@ dependencies = [
  "async-trait",
  "bytecheck",
  "bytes 1.10.1",
- "clap",
+ "clap 4.5.47",
  "crc32fast",
- "criterion",
+ "criterion 0.7.0",
  "crossbeam-queue",
  "crossbeam-utils",
  "dashmap",
@@ -12314,7 +12505,7 @@ dependencies = [
  "cfg-if",
  "chrono",
  "chrono-tz",
- "criterion",
+ "criterion 0.7.0",
  "crossbeam-utils",
  "derivative",
  "dyn-clone",
@@ -12460,7 +12651,7 @@ dependencies = [
 name = "vector-vrl-cli"
 version = "0.1.0"
 dependencies = [
- "clap",
+ "clap 4.5.47",
  "vector-vrl-functions",
  "vrl",
 ]
@@ -12469,6 +12660,7 @@ dependencies = [
 name = "vector-vrl-functions"
 version = "0.1.0"
 dependencies = [
+ "rvision-vrl-lib",
  "vrl",
 ]
 
@@ -12477,7 +12669,7 @@ name = "vector-vrl-tests"
 version = "0.1.0"
 dependencies = [
  "chrono-tz",
- "clap",
+ "clap 4.5.47",
  "dnstap-parser",
  "enrichment",
  "glob",
@@ -12538,7 +12730,7 @@ dependencies = [
  "chrono-tz",
  "ciborium",
  "cidr",
- "clap",
+ "clap 4.5.47",
  "codespan-reporting",
  "community-id",
  "convert_case 0.7.1",

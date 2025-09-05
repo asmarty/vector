@@ -132,6 +132,9 @@ members = [
   "lib/vector-vrl/tests",
   "lib/vector-vrl/web-playground",
   "vdev",
+
+  "r-vision-features/*",
+  "r-vision-features/rvision-vrl-lib/lib/*"
 ]
 
 [workspace.dependencies]

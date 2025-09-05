@@ -1,0 +1,19 @@
+[package]
+name = "rvision-vrl-lib"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+vrl.workspace = true
+cef2map-nom = { path = "lib/cef2map-nom", optional = true }
+bytes = { version = "1", optional = true }
+
+[features]
+default = [
+    "parse_cef",
+]
+
+parse_cef = ["cef2map-nom", "bytes"]
+
+

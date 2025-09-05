@@ -8,3 +8,4 @@ license = "MPL-2.0"
 
 [dependencies]
 vrl.workspace = true
+rvision-vrl-lib = { path = "../../../r-vision-features/rvision-vrl-lib" }

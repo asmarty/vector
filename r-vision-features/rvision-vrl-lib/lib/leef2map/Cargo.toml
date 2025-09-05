@@ -1,0 +1,12 @@
+[package]
+name = "leef2map"
+version = "0.1.0"
+edition = "2021"
+keywords = ["leef", "deserialization"]
+authors = ["Aleksei Khachaturov <ahachaturov@rvision.ru>"]
+
+[dependencies]
+bytes = "1.1.0"
+memchr = "2.5.0"
+r-nom = { path = "../r-nom" }
+syslog = { path = "../syslog" }

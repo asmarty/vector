@@ -1,0 +1,18 @@
+[package]
+name = "cef2map-nom"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bench]]
+name = "bench"
+harness = false
+
+[dependencies]
+r-nom = { path = "../r-nom" }
+memchr = "2.5.0"
+bytes = "1.1.0"
+syslog = { path = "../syslog" }
+
+[dev-dependencies]
+criterion = "0.3.6"

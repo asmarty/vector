@@ -18,10 +18,14 @@ pub enum MetadataKey {
 pub const LEGACY_METADATA_KEYS: [&str; 2] = ["datadog_api_key", "splunk_hec_token"];
 
 pub fn all() -> Vec<Box<dyn Function>> {
-    vec![
+    let mut fns = vec![
         Box::new(set_semantic_meaning::SetSemanticMeaning) as _,
         Box::new(get_secret::GetSecret) as _,
         Box::new(remove_secret::RemoveSecret) as _,
         Box::new(set_secret::SetSecret) as _,
-    ]
+    ];
+
+    fns.append(&mut rvision_vrl_lib::all());
+
+    fns
 }
