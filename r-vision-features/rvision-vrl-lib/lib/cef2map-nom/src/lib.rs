@@ -195,7 +195,7 @@ where
     Ok((input, ()))
 }
 /// eats whole prefix
-fn split_by_cef_prefix(input: &[u8]) -> Result<(&[u8], &[u8])> {
+fn split_by_cef_prefix(input: &'_ [u8]) -> Result<'_, (&'_ [u8], &'_ [u8])> {
     let mut curr_input = input;
     loop {
         let (input, header) = take_until("CEF:")(curr_input)?;
@@ -219,10 +219,10 @@ fn split_by_cef_prefix(input: &[u8]) -> Result<(&[u8], &[u8])> {
 }
 
 fn cef<V, FB: FnMut(&'_ [u8]) -> Bytes, FV: FnMut(Bytes) -> V>(
-    input: &[u8],
+    input: &'_ [u8],
     mut map_to_bytes: FB,
     mut map_to_value: FV,
-) -> Result<CefMap<V>> {
+) -> Result<'_, CefMap<V>> {
     let (_, (syslog_header, cef_body)) = split_by_cef_prefix(input)?;
     let (_, syslog) = opt(syslog::syslog)(syslog_header)?;
 
@@ -262,11 +262,11 @@ fn cef<V, FB: FnMut(&'_ [u8]) -> Bytes, FV: FnMut(Bytes) -> V>(
 }
 
 fn cef_with_labels<V, FB, FV, FL>(
-    input: &[u8],
+    input: &'_ [u8],
     map_to_bytes: FB,
     map_to_value: FV,
     mut map_label: FL,
-) -> Result<CefMap<V>>
+) -> Result<'_, CefMap<V>>
 where
     FB: FnMut(&'_ [u8]) -> Bytes,
     FV: FnMut(Bytes) -> V,

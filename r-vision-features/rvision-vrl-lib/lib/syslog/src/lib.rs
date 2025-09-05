@@ -17,13 +17,13 @@ pub struct SyslogData {
     pub ahost: Option<String>,
 }
 
-fn version(input: &[u8]) -> Result<u8> {
+fn version(input: &'_ [u8]) -> Result<'_, u8> {
     satisfy(|v| v.is_ascii_digit())
         .map(|v| v.to_digit(10).unwrap() as u8)
         .parse(input)
 }
 
-fn syslog_pri(input: &[u8]) -> Result<&[u8]> {
+fn syslog_pri(input: &'_ [u8]) -> Result<'_, &'_ [u8]> {
     delimited(
         tag(b"<"),
         take_while1(|v: u8| v.is_ascii_digit()),
@@ -32,16 +32,16 @@ fn syslog_pri(input: &[u8]) -> Result<&[u8]> {
     .parse(input)
 }
 
-fn single_space(input: &[u8]) -> Result<char> {
+fn single_space(input: &'_ [u8]) -> Result<'_, char> {
     satisfy(|v| v == ' ').parse(input)
 }
 
-fn syslog_segment(input: &[u8]) -> Result<&[u8]> {
+fn syslog_segment(input: &'_ [u8]) -> Result<'_, &'_ [u8]> {
     take_while1(|v| v != b' ')(input)
 }
 
-fn rfc_31644_timestamp(input: &[u8]) -> Result<String> {
-    fn double_digit(input: &[u8]) -> Result<u8> {
+fn rfc_31644_timestamp(input: &'_ [u8]) -> Result<'_, String> {
+    fn double_digit(input: &'_ [u8]) -> Result<'_, u8> {
         digit1
             .verify(|digits: &&[u8]| digits.len() == 2)
             // SAFETY: digit1 esures valid utf8 characters
@@ -101,8 +101,8 @@ fn rfc_31644_timestamp(input: &[u8]) -> Result<String> {
     .parse(input)
 }
 
-fn syslog_rfc3164(input: &[u8]) -> Result<SyslogData> {
-    fn syslog_header(input: &[u8]) -> Result<(String, &[u8])> {
+fn syslog_rfc3164(input: &'_ [u8]) -> Result<'_, SyslogData> {
+    fn syslog_header(input: &'_ [u8]) -> Result<'_, (String, &'_ [u8])> {
         pair(
             rfc_31644_timestamp.terminated(space1),
             syslog_segment.terminated(space1),
@@ -138,7 +138,7 @@ fn syslog_rfc3164(input: &[u8]) -> Result<SyslogData> {
     .parse(input)
 }
 
-fn syslog_rfc5424(input: &[u8]) -> Result<SyslogData> {
+fn syslog_rfc5424(input: &'_ [u8]) -> Result<'_, SyslogData> {
     tuple((
         delimited(
             tag(b"<"),
@@ -167,6 +167,6 @@ fn syslog_rfc5424(input: &[u8]) -> Result<SyslogData> {
     .parse(input)
 }
 
-pub fn syslog(input: &[u8]) -> Result<SyslogData> {
+pub fn syslog(input: &'_ [u8]) -> Result<'_, SyslogData> {
     alt((syslog_rfc5424, syslog_rfc3164))(input)
 }
